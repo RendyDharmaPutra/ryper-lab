@@ -12,6 +12,10 @@
     "@astrojs/sitemap": "^3.5.1",
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.3",
+    "crypto-js": "^4.2.0",
     "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2"
   }
 }

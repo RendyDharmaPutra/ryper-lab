@@ -1,30 +1,65 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Accordion from "../components/Accordion.astro";
 
+const items = [
+  {
+    title: "Menyelenggarakan proses akademik yang bermutu dan berdaya saing tinggi",
+    content:
+      "Menunjang dan menyelenggarakan proses pembelajaran yang bermutu dan berdayasaing tinggi untuk menghasilkan lulusan yang jujur, cerdas, berakhlak mulia, profesional dan kompeten di bidang IPTEK."
+  },
+  {
+    title: "Meningkatkan kualitas penelitian dan pengabdian masyarakat",
+    content:
+      "Mengembangkan inovasi penelitian dan pengabdian masyarakat berbasis teknologi untuk meningkatkan kontribusi terhadap perkembangan IPTEK dan kesejahteraan masyarakat."
+  },
+  {
+    title: "Mendukung kegiatan akademik maupun non akademik",
+    content:
+      " Memberikan dukungan penuh terhadap berbagai kegiatan yang mendukung pengembangan akademik dan non-akademik mahasiswa dan dosen."
+  },
+  {
+    title: "Menyelenggarakan dan menjalankan pengabdian kepada masyarakat",
+    content:
+      "  Melaksanakan program-program pengabdian masyarakat untuk memberikan kontribusi nyata bagi kemajuan teknologi dan kesejahteraan masyarakat."
+  },
+  {
+    title: "Menjalin hubungan kemitraan dengan dunia usaha",
+    content:
+      "Membangun kerjasama strategis dengan industri dan dunia usaha untuk menjembatani gap antara akademik dan praktik industri."
+  },
+  {
+    title: "Mewadahi dan memfasilitasi seluruh mahasiswa Fakultas Ilmu Komputer",
+    content:
+      " Menyediakan fasilitas dan program yang mendukung pengembangan kemampuan seluruh mahasiswa Fakultas Ilmu Komputer dalam bidang rekayasa perangkat lunak."
+  },
+
+];
 ---
 
 <Layout>
+  
       <div
       id="global-loader"
       data-loader-time="500"
-      class="loader-overlay fixed inset-0 bg-gray-900 flex items-center justify-center z-[9999] show"
+      class="loader-overlay fixed inset-0 bg-[#00052B] -z-10 flex items-center justify-center  show"
     >
       <div class="loader"></div>
     </div>
 	
     <section
       id="home"
-      class="relative min-h-screen flex items-center justify-center pt-32 sm:pt-40"
+      class=" min-h-screen flex items-center justify-center pt-20 sm:pt-40"
     >
       <!-- Background Image -->
       <div class="absolute inset-0 z-0">
         <img
-          src="assets/background.png"
+          src="images/background.png"
           alt="Lab Background"
-          class="w-full h-full object-cover"
+          class="w-full h-full relative object-cover"
         />
         <!-- Gradient Overlay -->
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 bg-black/50"></div>
         <div
           class="absolute inset-0"
           style="
@@ -44,7 +79,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Logo -->
         <div class="flex justify-center items-center mb-6 sm:mb-8">
           <img
-            src="assets/logo1.png"
+            src="images/logo1.png"
             alt="Logo Ryper Lab"
             class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain"
           />
@@ -79,7 +114,7 @@ import Layout from '../layouts/Layout.astro';
 
     <section class="py-16 sm:py-20 bg-[#00052B] relative overflow-hidden">
       <img
-        src="assets/left-element2.png"
+        src="images/left-element2.png"
         alt="Visi Background"
         class="absolute inset-0 w-[500px] h-[500px] bottom-0 object-cover z-50"
       />
@@ -104,7 +139,7 @@ import Layout from '../layouts/Layout.astro';
 
     <section class="py-16 sm:py-20 bg-[#00052B] relative overflow-hidden">
       <img
-        src="assets/left-element.png"
+        src="images/left-element.png"
         alt="Left Decoration"
         class="absolute left-0 bottom-0 h-full object-contain z-0"
       />
@@ -117,214 +152,11 @@ import Layout from '../layouts/Layout.astro';
         </h2>
 
         <div class="space-y-4">
-          <div
-            class="mission-card rounded-xl overflow-hidden bg-white bg-opacity-5"
-          >
-            <button
-              class="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white hover:bg-opacity-10 transition-all duration-300 mission-toggle"
-              data-target="mission-1"
-            >
-              <div class="flex items-center space-x-3 sm:space-x-4">
-                <div
-                  class="bg-white text-[#00052B] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
-                >
-                  1
-                </div>
-                <span
-                  class="text-sm sm:text-base lg:text-lg font-medium text-white"
-                  >Menyelenggarakan proses akademik yang bermutu dan
-                  berdayasaing tinggi</span
-                >
-              </div>
-              <i
-                class="fas fa-chevron-down transition-transform duration-300 transform mission-icon flex-shrink-0"
-              ></i>
-            </button>
-            <div
-              id="mission-1"
-              class="accordion-content px-4 sm:px-6 pb-6 hidden"
-            >
-              <p class="text-gray-300 ml-13 sm:ml-16 pt-4 text-sm sm:text-base">
-                Menunjang dan menyelenggarakan proses pembelajaran yang bermutu
-                dan berdayasaing tinggi untuk menghasilkan lulusan yang jujur,
-                cerdas, berakhlak mulia, profesional dan kompeten di bidang
-                IPTEK.
-              </p>
-            </div>
-          </div>
+    <Accordion items={items} />
 
-          <div
-            class="mission-card rounded-xl overflow-hidden bg-white bg-opacity-5"
-          >
-            <button
-              class="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white hover:bg-opacity-10 transition-all duration-300 mission-toggle"
-              data-target="mission-2"
-            >
-              <div class="flex items-center space-x-3 sm:space-x-4">
-                <div
-                  class="bg-white text-[#00052B] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
-                >
-                  2
-                </div>
-                <span
-                  class="text-sm sm:text-base lg:text-lg font-medium text-white"
-                  >Mengikuti berbagai ajang kompetisi tingkat nasional maupun
-                  internasional</span
-                >
-              </div>
-              <i
-                class="fas fa-chevron-down transition-transform duration-300 transform mission-icon flex-shrink-0"
-              ></i>
-            </button>
-            <div
-              id="mission-2"
-              class="accordion-content px-4 sm:px-6 pb-6 hidden"
-            >
-              <p class="text-gray-300 ml-13 sm:ml-16 pt-4 text-sm sm:text-base">
-                Aktif berpartisipasi dalam kompetisi-kompetisi bergengsi untuk
-                mengasah kemampuan dan meningkatkan reputasi laboratorium di
-                tingkat nasional dan internasional.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="mission-card rounded-xl overflow-hidden bg-white bg-opacity-5"
-          >
-            <button
-              class="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white hover:bg-opacity-10 transition-all duration-300 mission-toggle"
-              data-target="mission-3"
-            >
-              <div class="flex items-center space-x-3 sm:space-x-4">
-                <div
-                  class="bg-white text-[#00052B] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
-                >
-                  3
-                </div>
-                <span
-                  class="text-sm sm:text-base lg:text-lg font-medium text-white"
-                  >Mendukung kegiatan akademik maupun non akademik</span
-                >
-              </div>
-              <i
-                class="fas fa-chevron-down transition-transform duration-300 transform mission-icon flex-shrink-0"
-              ></i>
-            </button>
-            <div
-              id="mission-3"
-              class="accordion-content px-4 sm:px-6 pb-6 hidden"
-            >
-              <p class="text-gray-300 ml-13 sm:ml-16 pt-4 text-sm sm:text-base">
-                Memberikan dukungan penuh terhadap berbagai kegiatan yang
-                mendukung pengembangan akademik dan non-akademik mahasiswa dan
-                dosen.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="mission-card rounded-xl overflow-hidden bg-white bg-opacity-5"
-          >
-            <button
-              class="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white hover:bg-opacity-10 transition-all duration-300 mission-toggle"
-              data-target="mission-4"
-            >
-              <div class="flex items-center space-x-3 sm:space-x-4">
-                <div
-                  class="bg-white text-[#00052B] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
-                >
-                  4
-                </div>
-                <span
-                  class="text-sm sm:text-base lg:text-lg font-medium text-white"
-                  >Menyelenggarakan dan menjalankan pengabdian kepada
-                  masyarakat</span
-                >
-              </div>
-              <i
-                class="fas fa-chevron-down transition-transform duration-300 transform mission-icon flex-shrink-0"
-              ></i>
-            </button>
-            <div
-              id="mission-4"
-              class="accordion-content px-4 sm:px-6 pb-6 hidden"
-            >
-              <p class="text-gray-300 ml-13 sm:ml-16 pt-4 text-sm sm:text-base">
-                Melaksanakan program-program pengabdian masyarakat untuk
-                memberikan kontribusi nyata bagi kemajuan teknologi dan
-                kesejahteraan masyarakat.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="mission-card rounded-xl overflow-hidden bg-white bg-opacity-5"
-          >
-            <button
-              class="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white hover:bg-opacity-10 transition-all duration-300 mission-toggle"
-              data-target="mission-5"
-            >
-              <div class="flex items-center space-x-3 sm:space-x-4">
-                <div
-                  class="bg-white text-[#00052B] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
-                >
-                  5
-                </div>
-                <span
-                  class="text-sm sm:text-base lg:text-lg font-medium text-white"
-                  >Menjalin hubungan kemitraan dengan dunia usaha</span
-                >
-              </div>
-              <i
-                class="fas fa-chevron-down transition-transform duration-300 transform mission-icon flex-shrink-0"
-              ></i>
-            </button>
-            <div
-              id="mission-5"
-              class="accordion-content px-4 sm:px-6 pb-6 hidden"
-            >
-              <p class="text-gray-300 ml-13 sm:ml-16 pt-4 text-sm sm:text-base">
-                Membangun kerjasama strategis dengan industri dan dunia usaha
-                untuk menjembatani gap antara akademik dan praktik industri.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="mission-card rounded-xl overflow-hidden bg-white bg-opacity-5"
-          >
-            <button
-              class="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white hover:bg-opacity-10 transition-all duration-300 mission-toggle"
-              data-target="mission-6"
-            >
-              <div class="flex items-center space-x-3 sm:space-x-4">
-                <div
-                  class="bg-white text-[#00052B] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
-                >
-                  6
-                </div>
-                <span
-                  class="text-sm sm:text-base lg:text-lg font-medium text-white"
-                  >Mewadahi dan memfasilitasi seluruh mahasiswa Fakultas Ilmu
-                  Komputer</span
-                >
-              </div>
-              <i
-                class="fas fa-chevron-down transition-transform duration-300 transform mission-icon flex-shrink-0"
-              ></i>
-            </button>
-            <div
-              id="mission-6"
-              class="accordion-content px-4 sm:px-6 pb-6 hidden"
-            >
-              <p class="text-gray-300 ml-13 sm:ml-16 pt-4 text-sm sm:text-base">
-                Menyediakan fasilitas dan program yang mendukung pengembangan
-                kemampuan seluruh mahasiswa Fakultas Ilmu Komputer dalam bidang
-                rekayasa perangkat lunak.
-              </p>
-            </div>
-          </div>
+       
         </div>
       </div>
     </section>
 </Layout>
+
