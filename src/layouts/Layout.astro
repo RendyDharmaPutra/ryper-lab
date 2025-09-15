@@ -2,6 +2,9 @@
 import Header from "@/components/layouts/Header.astro";
 import "../styles/global.css";
 import Footer from "@/components/layouts/Footer.astro";
+
+const { showHeader = true, showFooter = true } = Astro.props;
+
 ---
 
 
@@ -29,9 +32,9 @@ import Footer from "@/components/layouts/Footer.astro";
 
 	</head>
 	<body class="bg-gray-800 text-white">
-		<Header/>
+		{ showHeader && <Header /> }
 		<slot />
-		<Footer />
+		{ showFooter && <Footer /> }
 	</body>
 
 	<script src="https://kit.fontawesome.com/565fefc02a.js" crossorigin="anonymous"></script>
