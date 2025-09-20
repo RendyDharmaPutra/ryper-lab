@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import "../../styles/blog-detail.css";
 
 let post = null;
@@ -11,7 +11,7 @@ if (typeof window !== "undefined") {
   }
 }
 ---
-<Layout showHeader={false} showFooter={false}>
+<MainLayout showHeader={false} showFooter={false}>
 <div class="fixed top-6 left-6 z-50 hidden sm:block">
   <button
     onclick="history.back()"
@@ -38,4 +38,4 @@ if (typeof window !== "undefined") {
       <div id="detailContainer" class="space-y-8"></div>
     </main>
     <script type="module" src="/src/scripts/detail.js" defer></script>
-</Layout>
+</MainLayout>

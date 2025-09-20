@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 import "../styles/about.css";
 
 ---
-<Layout showHeader={true} showFooter={true}>
+<MainLayout showHeader={true} showFooter={true}>
    
     <section id="home" class="relative min-h-screen flex overflow-hidden">
       <div class="absolute top-0 left-0 z-0">
@@ -259,4 +259,4 @@ import "../styles/about.css";
       </div>
     </section>
     <script src="/src/scripts/about.js" defer></script>
-</Layout>
+</MainLayout>
