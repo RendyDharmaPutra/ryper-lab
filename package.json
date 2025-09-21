@@ -17,6 +17,7 @@
     "astro": "^5.13.3",
     "crypto-js": "^4.2.0",
     "lucide-react": "^0.544.0",
+    "motion": "^12.23.16",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.12"
