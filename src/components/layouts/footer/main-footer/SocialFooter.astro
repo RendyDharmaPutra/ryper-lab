@@ -1,0 +1,19 @@
+---
+import { Github, Instagram, Linkedin, Share2, Youtube } from "lucide-react";
+import SocialItem from "./SocialItem.astro";
+---
+
+<section class="space-y-4">
+    <h3
+        class="text-white font-bold text-base sm:text-lg flex items-center space-x-2"
+    >
+        <Share2 className="w-5 h-5" />
+        <span>Social Media</span>
+    </h3>
+    <div class="flex space-x-4">
+        <SocialItem Icon={Youtube} href="https://www.youtube.com/@rplunej5484" />
+        <SocialItem Icon={Linkedin} href="https://www.linkedin.com/company/ryper-lab/" />
+        <SocialItem Icon={Instagram} href="https://www.instagram.com/ryperlabunej/" />
+        <SocialItem Icon={Github} href="https://github.com/RyperLab-UNEJ/" />
+    </div>
+</section>
