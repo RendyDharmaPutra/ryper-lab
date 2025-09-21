@@ -1,13 +1,12 @@
 const header = document.getElementById("main-header");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 10) {
-      header.classList.add("glass-effect");
-    } else {
-      header.classList.remove("glass-effect");
-    }
-  }); 
- 
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 10) {
+    header.classList.add("glass-effect");
+  } else {
+    header.classList.remove("glass-effect");
+  }
+});
 
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("keydown", (e) => {
@@ -73,38 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
         missionCard.classList.remove("expanded");
       }
     });
-  });
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const closeMenuBtn = document.getElementById("close-menu-btn");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-
-  mobileMenuBtn.addEventListener("click", function () {
-    mobileMenu.classList.add("active");
-    document.body.style.overflow = "hidden";
-  });
-
-  closeMenuBtn.addEventListener("click", function () {
-    mobileMenu.classList.remove("active");
-    document.body.style.overflow = "auto";
-  });
-
-  mobileNavLinks.forEach((link) => {
-    link.addEventListener("click", function () {
-      mobileMenu.classList.remove("active");
-      document.body.style.overflow = "auto";
-    });
-  });
-
-  document.addEventListener("click", function (e) {
-    if (
-      !mobileMenu.contains(e.target) &&
-      !mobileMenuBtn.contains(e.target) &&
-      mobileMenu.classList.contains("active")
-    ) {
-      mobileMenu.classList.remove("active");
-      document.body.style.overflow = "auto";
-    }
   });
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

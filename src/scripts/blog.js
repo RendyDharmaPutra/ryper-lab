@@ -293,16 +293,16 @@ document.addEventListener("keydown", (e) => {
   const key = e.key.toLowerCase();
 
   if (
-    e.key === "F12" ||                               // F12 (DevTools)
-    (e.ctrlKey && e.shiftKey && key === "i") ||      // Ctrl+Shift+I (Inspect)
-    (e.ctrlKey && e.shiftKey && key === "j") ||      // Ctrl+Shift+J (Console)
-    (e.ctrlKey && e.shiftKey && key === "c") ||      // Ctrl+Shift+C (Inspect Element)
-    (e.ctrlKey && key === "u") ||                    // Ctrl+U (View Source)
-    (e.ctrlKey && key === "s") ||                    // Ctrl+S (Save Page)
-    (e.metaKey && e.altKey && key === "i") ||        // Cmd+Option+I (Mac Inspect)
-    (e.metaKey && e.altKey && key === "j") ||        // Cmd+Option+J (Mac Console)
-    (e.metaKey && key === "s") ||                    // Cmd+S (Mac Save)
-    (e.metaKey && key === "u")                       // Cmd+U (Mac View Source)
+    e.key === "F12" || // F12 (DevTools)
+    (e.ctrlKey && e.shiftKey && key === "i") || // Ctrl+Shift+I (Inspect)
+    (e.ctrlKey && e.shiftKey && key === "j") || // Ctrl+Shift+J (Console)
+    (e.ctrlKey && e.shiftKey && key === "c") || // Ctrl+Shift+C (Inspect Element)
+    (e.ctrlKey && key === "u") || // Ctrl+U (View Source)
+    (e.ctrlKey && key === "s") || // Ctrl+S (Save Page)
+    (e.metaKey && e.altKey && key === "i") || // Cmd+Option+I (Mac Inspect)
+    (e.metaKey && e.altKey && key === "j") || // Cmd+Option+J (Mac Console)
+    (e.metaKey && key === "s") || // Cmd+S (Mac Save)
+    (e.metaKey && key === "u") // Cmd+U (Mac View Source)
   ) {
     e.preventDefault();
     e.stopPropagation();
@@ -313,25 +313,4 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("DOMContentLoaded", function () {
   initBlog();
   simulateDataRefresh();
-});
-const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-const closeMenuBtn = document.getElementById("close-menu-btn");
-const mobileMenu = document.querySelector(".mobile-menu");
-const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-
-mobileMenuBtn.addEventListener("click", function () {
-  mobileMenu.classList.add("active");
-  document.body.style.overflow = "hidden";
-});
-
-closeMenuBtn.addEventListener("click", function () {
-  mobileMenu.classList.remove("active");
-  document.body.style.overflow = "auto";
-});
-
-mobileNavLinks.forEach((link) => {
-  link.addEventListener("click", function () {
-    mobileMenu.classList.remove("active");
-    document.body.style.overflow = "auto";
-  });
 });

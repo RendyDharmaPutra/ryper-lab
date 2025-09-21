@@ -3,28 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     return false;
   });
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const closeMenuBtn = document.getElementById("close-menu-btn");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-
-  mobileMenuBtn.addEventListener("click", function () {
-    mobileMenu.classList.add("active");
-    document.body.style.overflow = "hidden";
-  });
-
-  closeMenuBtn.addEventListener("click", function () {
-    mobileMenu.classList.remove("active");
-    document.body.style.overflow = "auto";
-  });
-
-  mobileNavLinks.forEach((link) => {
-    link.addEventListener("click", function () {
-      mobileMenu.classList.remove("active");
-      document.body.style.overflow = "auto";
-    });
-  });
-
   document.addEventListener("wheel", function (e) {
     if (e.shiftKey) {
       e.preventDefault();
