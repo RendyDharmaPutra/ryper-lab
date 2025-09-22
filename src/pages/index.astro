@@ -1,43 +1,13 @@
 ---
-import Accordion from '@/components/ui/Accordion.astro';
 import MainLayout from '../layouts/MainLayout.astro';
+import HeroSection from '@/features/home/components/HeroSection.astro';
+import MissionSection from '@/features/home/components/MissionSection.astro';
+import VisionSection from '@/features/home/components/VisionSection.astro';
 
-const items = [
-  {
-    title: "Menyelenggarakan proses akademik yang bermutu dan berdaya saing tinggi",
-    content:
-      "Menunjang dan menyelenggarakan proses pembelajaran yang bermutu dan berdayasaing tinggi untuk menghasilkan lulusan yang jujur, cerdas, berakhlak mulia, profesional dan kompeten di bidang IPTEK."
-  },
-  {
-    title: "Meningkatkan kualitas penelitian dan pengabdian masyarakat",
-    content:
-      "Mengembangkan inovasi penelitian dan pengabdian masyarakat berbasis teknologi untuk meningkatkan kontribusi terhadap perkembangan IPTEK dan kesejahteraan masyarakat."
-  },
-  {
-    title: "Mendukung kegiatan akademik maupun non akademik",
-    content:
-      " Memberikan dukungan penuh terhadap berbagai kegiatan yang mendukung pengembangan akademik dan non-akademik mahasiswa dan dosen."
-  },
-  {
-    title: "Menyelenggarakan dan menjalankan pengabdian kepada masyarakat",
-    content:
-      "  Melaksanakan program-program pengabdian masyarakat untuk memberikan kontribusi nyata bagi kemajuan teknologi dan kesejahteraan masyarakat."
-  },
-  {
-    title: "Menjalin hubungan kemitraan dengan dunia usaha",
-    content:
-      "Membangun kerjasama strategis dengan industri dan dunia usaha untuk menjembatani gap antara akademik dan praktik industri."
-  },
-  {
-    title: "Mewadahi dan memfasilitasi seluruh mahasiswa Fakultas Ilmu Komputer",
-    content:
-      " Menyediakan fasilitas dan program yang mendukung pengembangan kemampuan seluruh mahasiswa Fakultas Ilmu Komputer dalam bidang rekayasa perangkat lunak."
-  },
 
-];
 ---
 
-<MainLayout showHeader={true} showFooter={true}>
+<MainLayout>
   
       <div
       id="global-loader"
@@ -47,116 +17,11 @@ const items = [
       <div class="loader"></div>
     </div>
 	
-    <section
-      id="home"
-      class=" min-h-screen flex items-center justify-center pt-20 sm:pt-40"
-    >
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <img
-          src="images/background.png"
-          alt="Lab Background"
-          class="w-full h-full relative object-cover"
-        />
-        <!-- Gradient Overlay -->
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div
-          class="absolute inset-0"
-          style="
-            background: linear-gradient(
-              180deg,
-              rgba(0, 0, 0, 0.2) 20%,
-              #00052b 100%
-            );
-          "
-        ></div>
-      </div>
+   <HeroSection/>
 
+   <VisionSection/>
 
+   <MissionSection/>
 
-      <!-- Konten Tengah -->
-      <div class="relative z-30 text-center max-w-5xl mx-auto px-4 sm:px-6">
-        <!-- Logo -->
-        <div class="flex justify-center items-center mb-6 sm:mb-8">
-          <img
-            src="images/logo1.png"
-            alt="Logo Ryper Lab"
-            class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-contain"
-          />
-        </div>
-
-        <!-- Judul -->
-        <h1
-          class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4"
-        >
-          Ryper Lab Universitas Jember
-        </h1>
-
-        <!-- Subjudul -->
-        <h2
-          class="text-lg sm:text-2xl md:text-3xl text-gray-300 font-light mb-6 sm:mb-8"
-        >
-          Laboratorium Rekayasa Perangkat Lunak
-        </h2>
-
-        <!-- Deskripsi -->
-        <p
-          class="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed"
-        >
-          Ryper Lab merupakan salah satu laboratorium yang dimiliki oleh
-          Fakultas Ilmu Komputer Universitas Jember yang berfokus pada analisis,
-          pengembangan, desain dan implementasi perangkat lunak. Ryper Lab
-          memiliki asisten laboratorium yang terbagi menjadi 3 bidang yang
-          terdiri dari asisten praktikum (pendidikan), asisten penelitian.
-        </p>
-      </div>
-    </section>
-
-    <section class="py-16 sm:py-20 bg-[#00052B] relative overflow-hidden">
-      <img
-        src="images/left-element2.png"
-        alt="Visi Background"
-        class="absolute inset-0 w-[500px] h-[500px] bottom-0 object-cover z-50"
-      />
-
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 text-white"
-        >
-          Visi
-        </h2>
-        <div class="text-center max-w-4xl mx-auto">
-          <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
-            Unggul dalam riset dan pengembangan di bidang Rekayasa Perangkat
-            Lunak (RPL) maupun IPTEK yang berkompeten serta berdaya saing tinggi
-            sehingga dapat menjadi pusat rujukan penelitian dan pengembangan di
-            bidang Rekayasa Perangkat Lunak yang selaras dengan visi dan misi
-            fakultas.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 sm:py-20 bg-[#00052B] relative overflow-hidden">
-      <img
-        src="images/left-element.png"
-        alt="Left Decoration"
-        class="absolute left-0 bottom-0 h-full object-contain z-0"
-      />
-
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 text-white"
-        >
-          Misi
-        </h2>
-
-        <div class="space-y-4">
-    <Accordion items={items} />
-
-       
-        </div>
-      </div>
-    </section>
 </MainLayout>
 
