@@ -1,0 +1,12 @@
+---
+import {HeaderSection} from "@/components/layouts/header/HeaderSection";
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/global.css";
+import FooterSection from "@/components/layouts//footer/FooterSection.astro";
+---
+
+<BaseLayout>
+    <HeaderSection client:load />
+    <slot/>
+    <FooterSection/>
+</BaseLayout>

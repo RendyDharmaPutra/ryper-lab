@@ -1,0 +1,97 @@
+body {
+  background: #111827;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+.mobile-menu {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.mobile-menu.active {
+  transform: translateX(0);
+  height: 100vh;
+}
+
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.carousel-track {
+  transition: transform 0.5s ease;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-item {
+  transition: all 0.3s ease;
+  transform: scale(0.85);
+  opacity: 0.6;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-item.center {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.carousel-nav:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.course-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.person-card {
+  transition: all 0.3s ease;
+}
+
+.person-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.course-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-container {
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .carousel-item {
+    width: 260px !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .carousel-item {
+    width: 280px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .carousel-item {
+    width: 288px !important;
+  }
+}

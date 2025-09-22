@@ -1,0 +1,15 @@
+---
+import type { LucideIcon } from "lucide-react"
+
+
+type SocialItemProps = {
+    Icon: LucideIcon;
+    href: string | URL;
+}
+
+const {Icon, href} = Astro.props as SocialItemProps
+---
+
+ <a href={href} class="text-gray-300 hover:text-white transition-all duration-300 hover:scale-110 text-xl">
+     <Icon className="w-5 h-5" />
+</a>

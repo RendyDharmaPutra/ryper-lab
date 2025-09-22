@@ -1,0 +1,75 @@
+---
+interface AccordionItem {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: AccordionItem[];
+}
+
+const { items } = Astro.props as Props;
+---
+
+<div class="space-y-4">
+  {items.map((item, index) => (
+    <div
+      class="mission-card rounded-xl overflow-hidden bg-[#0D1236] bg-opacity-5"
+    >
+      <button
+        type="button"
+        class="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-white/20 hover:bg-opacity-10 transition-all duration-300"
+        data-target={`mission-${index}`}
+      >
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <div
+            class="bg-white text-[#00052B] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
+          >
+            {index + 1}
+          </div>
+          <span class="text-sm sm:text-base font-medium text-white">
+            {item.title}
+          </span>
+        </div>
+        <i
+          id={`icon-${index}`}
+          class="fas fa-chevron-down transition-transform duration-300 transform"
+        ></i>
+      </button>
+
+      <div
+        id={`mission-${index}`}
+        class="accordion-content px-4 sm:px-6 pb-6 hidden"
+      >
+        <p class="text-gray-300 ml-13 sm:ml-16 pt-4 text-sm sm:text-base">
+          {item.content}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  // Ambil semua tombol accordion
+  const buttons = document.querySelectorAll<HTMLButtonElement>("button[data-target]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-target");
+
+      // Pastikan targetId tidak null sebelum digunakan
+      if (!targetId) return;
+
+      const content = document.getElementById(targetId);
+      const icon = button.querySelector("i");
+
+      if (content) {
+        content.classList.toggle("hidden");
+      }
+
+      if (icon) {
+        icon.classList.toggle("rotate-180");
+      }
+    });
+  });
+</script>
