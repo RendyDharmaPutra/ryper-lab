@@ -1,0 +1,35 @@
+---
+import type { BlogType } from '@/types/models/blog-type';
+
+/**
+ * BlogContent.astro
+ *
+ * Komponen untuk menampilkan konten artikel blog.
+ * Memformat deskripsi blog menjadi paragraf-paragraf yang terstruktur.
+ *
+ * Props:
+ * - blog: BlogType — Data blog yang akan ditampilkan
+ */
+
+export interface Props {
+  blog: BlogType;
+}
+
+const { blog } = Astro.props;
+
+// Memformat deskripsi menjadi HTML paragraf
+const formatContent = (description: string): string => {
+  return description
+    .split("\n")
+    .map((paragraph) =>
+      paragraph.trim() ? `<p>${paragraph.trim()}</p>` : ""
+    )
+    .join("");
+};
+---
+
+<div class="prose prose-lg prose-invert max-w-none">
+  <div class="text-gray-200 leading-relaxed space-y-4 text-base sm:text-lg">
+    <Fragment set:html={formatContent(blog.deskripsi)} />
+  </div>
+</div>

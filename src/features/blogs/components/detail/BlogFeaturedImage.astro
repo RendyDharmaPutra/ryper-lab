@@ -1,0 +1,29 @@
+---
+import type { BlogType } from '@/types/models/blog-type';
+
+/**
+ * BlogFeaturedImage.astro
+ *
+ * Komponen untuk menampilkan gambar utama blog.
+ * Menampilkan gambar dengan efek hover dan overlay gradient.
+ *
+ * Props:
+ * - blog: BlogType — Data blog yang akan ditampilkan
+ */
+
+export interface Props {
+  blog: BlogType;
+}
+
+const { blog } = Astro.props;
+---
+
+<div class="relative overflow-hidden rounded-xl bg-gray-800">
+  <img
+    src={blog.gambar}
+    alt={blog.judul}
+    class="w-full h-64 sm:h-80 lg:h-96 object-cover transition-transform duration-700 hover:scale-105"
+    loading="lazy"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>

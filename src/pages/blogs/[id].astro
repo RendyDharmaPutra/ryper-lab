@@ -1,37 +1,28 @@
 ---
 import "../../styles/blog-detail.css";
 import BaseLayout from '@/layouts/BaseLayout.astro';
-
+import { BackBtn } from '@/components/ui/BackBtn';
+import BlogDetailSection from '@/features/blogs/components/detail/BlogDetailSection.astro';
+import NotFoundError from '@/components/boundaries/NotFoundError.astro';
 
 const { id } = Astro.params;
+
+
 ---
 <BaseLayout>
 <section class="fixed top-6 left-6 z-50 hidden sm:block">
-  <button
-    onclick="history.back()"
-    class="back-button backdrop-blur-md cursor-pointer bg-white/10 px-6 py-3 rounded-2xl text-sm font-medium text-white hover:bg-white/20 flex items-center gap-2 shadow-lg"
-  >
-    <svg
-      class="w-4 h-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M10 19l-7-7m0 0l7-7m-7 7h18"
-      />
-    </svg>
-    Kembali
-  </button>
+  <BackBtn client:load/>
 </section>
 
-<p>{id}</p>
 
-    <!-- <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div id="detailContainer" class="space-y-8"></div>
-    </main>
-    <script type="module" src="/src/scripts/detail.js" defer></script> -->
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  {id ? (
+    <BlogDetailSection id={id} />
+  ) : (
+    <NotFoundError message="Blog dengan ID tersebut tidak dapat ditemukan" />
+  )}
+  
+</main>
+    <!-- <script type="module" src="/src/scripts/detail.js" defer></script> -->
 </BaseLayout>
