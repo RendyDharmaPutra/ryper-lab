@@ -1,5 +1,5 @@
 export type BlogType = {
-  id: string;
+  id_blog: string;
   judul: string;
   deskripsi: string;
   createdAt: string;
