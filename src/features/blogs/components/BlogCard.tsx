@@ -1,5 +1,4 @@
 import type { BlogType } from "@/types/models/blog-type";
-import { hashId } from "@/utils/encrypt/hash-id";
 import { formatWIB } from "@/utils/formatter/time_formatter";
 
 /**
@@ -19,7 +18,7 @@ interface BlogCardProps {
 export default function BlogCard({ post }: BlogCardProps) {
   return (
     <div className="blog-card rounded-2xl overflow-hidden fade-in cursor-pointer transition-transform hover:scale-[1.02]">
-      <a href={`/blogs/${hashId(post.id)}`} className="block">
+      <a href={`/blogs/${post.id_blog}`} className="block">
         <div className="image-wrapper relative">
           <img src={post.gambar} alt="Blog Image" />
           <div className="category-badge absolute top-2 right-2 bg-white text-black px-3 py-1 text-xs font-semibold rounded-full shadow">
