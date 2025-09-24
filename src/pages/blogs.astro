@@ -1,10 +1,8 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import "../styles/blog.css";
-import { readBlogsService } from '@/features/blogs/services/read-blogs';
-import { processBlogsService } from '@/features/blogs/services/process-blogs';
+import { isBlogArray, readBlogsService } from '@/features/blogs/services/read-blogs';
 import { getBlogsListingParams } from '@/features/blogs/services/get-blogs-listing-params';
-import type { BlogType } from '@/types/models/blog-type';
 import BlogHero from '@/features/blogs/components/BlogHero.astro';
 import BlogFilters from '@/features/blogs/components/BlogFilters.astro';
 import { BlogContent } from '@/features/blogs/components/BlogContent';
@@ -17,18 +15,6 @@ const url = Astro.url;
 const { category: currentFilter, searchQuery, currentPage: pageParam } = getBlogsListingParams(url);
 
 const blogs = await readBlogsService();
-
-// Normalisasi hasil fetch menjadi array aman tanpa type-narrowing runtime
-const safeBlogs: BlogType[] = Array.isArray(blogs) ? (blogs as BlogType[]) : [];
-
-// Proses blogs untuk mendapatkan data yang dibutuhkan oleh BlogContent
-const { postsToShow, totalPages, currentPage } = processBlogsService(
-  safeBlogs,
-  currentFilter,
-  searchQuery,
-  pageParam
-);
-
 ---
 
 <MainLayout>
@@ -39,14 +25,20 @@ const { postsToShow, totalPages, currentPage } = processBlogsService(
 
       <div class="max-w-[1260px] mx-auto px-6 pt-20">
         <BlogFilters currentFilter={currentFilter} searchQuery={searchQuery} baseSearchParams={url.searchParams} />
+
+        {isBlogArray(blogs) ? (
+          <BlogContent
+            blogs={blogs}
+            currentFilter={currentFilter}
+            searchQuery={searchQuery}
+            pageParam={pageParam}
+            baseQueryString={url.searchParams.toString()}
+            client:load
+          />
+        ) : (
+          <p>{blogs.error}</p>
+        )}
         
-        <BlogContent
-          postsToShow={postsToShow}
-          totalPages={totalPages}
-          currentPage={currentPage}
-          baseQueryString={url.searchParams.toString()}
-          client:load
-        />
       </div>
     </div>
 

@@ -1,6 +1,12 @@
 import type { BlogType } from "@/types/models/blog-type";
 import api from "@/lib/api";
 
+export const isBlogArray = (
+  data: BlogType[] | { error: string }
+): data is BlogType[] => {
+  return Array.isArray(data);
+};
+
 export const readBlogsService = async (): Promise<
   BlogType[] | { error: string }
 > => {
