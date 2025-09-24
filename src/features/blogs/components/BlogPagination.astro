@@ -1,0 +1,59 @@
+---
+/**
+ * BlogPagination.astro
+ *
+ * Menampilkan kontrol pagination untuk daftar blog.
+ * Komponen ini menerima baseSearchParams agar pembuatan URL
+ * tidak bergantung pada Astro.url langsung.
+ *
+ * Props:
+ * - currentPage: number — halaman aktif saat ini
+ * - totalPages: number — jumlah total halaman
+ * - baseSearchParams: URLSearchParams — basis query untuk membangun href
+ */
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseSearchParams: URLSearchParams;
+}
+
+import { mergeSearchParams } from '@/utils/url';
+
+const { currentPage, totalPages, baseSearchParams } = Astro.props as Props;
+---
+<section
+  id="pagination"
+  class="flex justify-center space-x-2 pb-20 bg-red-500"
+>
+  {totalPages > 1 && (
+    <>
+      <a
+        class={`pagination-btn ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'bg-gray-800 text-gray-400 hover:bg-white hover:text-gray-900'}`}
+        aria-disabled={currentPage === 1}
+        href={currentPage === 1 ? '#' : mergeSearchParams(baseSearchParams, { page: currentPage - 1 })}
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      </a>
+
+      {
+        Array.from({ length: totalPages }, (_, i) => i + 1)
+          .slice(Math.max(0, currentPage - 3), Math.max(0, currentPage - 3) + 5)
+          .map((i) => (
+            <a
+              href={mergeSearchParams(baseSearchParams, { page: i })}
+              class={`pagination-btn ${i === currentPage ? 'active' : 'bg-gray-800 text-gray-400 hover:bg-white hover:text-gray-900'}`}
+            >{i}</a>
+          ))
+      }
+
+      <a
+        class={`pagination-btn ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'bg-gray-800 text-gray-400 hover:bg-white hover:text-gray-900'}`}
+        aria-disabled={currentPage === totalPages}
+        href={currentPage === totalPages ? '#' : mergeSearchParams(baseSearchParams, { page: currentPage + 1 })}
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </a>
+    </>
+  )}
+</section>
