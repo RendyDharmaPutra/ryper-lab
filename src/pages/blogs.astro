@@ -6,6 +6,7 @@ import { getBlogsListingParams } from '@/features/blogs/services/get-blogs-listi
 import BlogHero from '@/features/blogs/components/BlogHero.astro';
 import BlogFilters from '@/features/blogs/components/BlogFilters.astro';
 import { BlogContent } from '@/features/blogs/components/BlogContent';
+import ErrorBoundary from '@/components/boundaries/ErrorBoundary.astro';
 
 // Pastikan halaman ini SSR karena menggunakan Astro.url (query params runtime)
 export const prerender = false;
@@ -36,9 +37,11 @@ const blogs = await readBlogsService();
             client:load
           />
         ) : (
-          <p>{blogs.error}</p>
+          <ErrorBoundary 
+            title="Terjadi Kesalahan pada Blog"
+            message={blogs.error}
+          />
         )}
-        
       </div>
     </div>
 
