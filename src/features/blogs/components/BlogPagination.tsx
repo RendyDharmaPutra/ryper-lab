@@ -24,10 +24,7 @@ export default function BlogPagination({
   const base = new URLSearchParams(baseQueryString);
 
   return (
-    <section
-      id="pagination"
-      className="flex justify-center space-x-2 pb-20 bg-red-500"
-    >
+    <section id="pagination" className="flex justify-center space-x-2 pb-20 ">
       {totalPages > 1 && (
         <>
           <a
