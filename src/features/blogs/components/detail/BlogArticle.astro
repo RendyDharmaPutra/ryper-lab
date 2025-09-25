@@ -1,0 +1,33 @@
+---
+import type { BlogType } from '@/types/models/blog-type';
+import BlogHeader from './BlogHeader.astro';
+import BlogFeaturedImage from './BlogFeaturedImage.astro';
+import BlogContent from './BlogContent.astro';
+
+/**
+ * BlogArticle.astro
+ *
+ * Komponen artikel blog yang menggabungkan semua bagian artikel.
+ * Mengatur layout dan struktur keseluruhan artikel blog.
+ *
+ * Props:
+ * - blog: BlogType — Data blog yang akan ditampilkan
+ */
+
+export interface Props {
+  blog: BlogType;
+}
+
+const { blog } = Astro.props;
+---
+
+<article class="space-y-6">
+  <!-- Header Section: Metadata dan Judul -->
+  <BlogHeader blog={blog} />
+
+  <!-- Featured Image Section -->
+  <BlogFeaturedImage blog={blog} />
+
+  <!-- Article Content Section -->
+  <BlogContent blog={blog} />
+</article>

@@ -1,0 +1,73 @@
+---
+/**
+ * BlogFilters.astro
+ *
+ * Menampilkan baris filter kategori dan form pencarian.
+ * Komponen ini tidak bergantung pada Astro.url secara langsung —
+ * ia menerima baseSearchParams dari parent untuk membangun href
+ * menggunakan util mergeSearchParams agar tetap pure dan reusable.
+ *
+ * Props:
+ * - currentFilter: string — filter kategori aktif (mis. 'all', 'event', ...)
+ * - searchQuery: string — nilai query pencarian saat ini
+ * - baseSearchParams: URLSearchParams — instance untuk dijadikan basis pembuatan URL
+ */
+
+interface Props {
+  currentFilter: string;
+  searchQuery: string;
+  baseSearchParams: URLSearchParams;
+}
+
+import { mergeSearchParams } from '@/utils/url';
+
+const { currentFilter, searchQuery, baseSearchParams } = Astro.props as Props;
+---
+<section
+  class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 "
+>
+  <h2 class="text-2xl md:text-3xl font-semibold mb-6 md:mb-0">
+    NEWEST POST
+  </h2>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <a href={mergeSearchParams(baseSearchParams, { filter: 'all', page: 1 })}
+       class={`chip px-4 py-2 rounded-full text-sm font-medium ${currentFilter === 'all' ? 'active' : ''}`}>
+      All
+    </a>
+    <a href={mergeSearchParams(baseSearchParams, { filter: 'event', page: 1 })}
+       class={`chip px-4 py-2 rounded-full text-sm font-medium ${currentFilter === 'event' ? 'active' : ''}`}>
+      Event
+    </a>
+    <a href={mergeSearchParams(baseSearchParams, { filter: 'material', page: 1 })}
+       class={`chip px-4 py-2 rounded-full text-sm font-medium ${currentFilter === 'material' ? 'active' : ''}`}>
+      Workshop
+    </a>
+    <a href={mergeSearchParams(baseSearchParams, { filter: 'pengenalan', page: 1 })}
+       class={`chip px-4 py-2 rounded-full text-sm font-medium ${currentFilter === 'pengenalan' ? 'active' : ''}`}>
+      Pengenalan
+    </a>
+    <a href={mergeSearchParams(baseSearchParams, { filter: 'latest', page: 1 })}
+       class={`chip px-4 py-2 rounded-full text-sm font-medium mr-6 ${currentFilter === 'latest' ? 'active' : ''}`}>
+      Penelitian
+    </a>
+
+    <div id="search-container">
+      <form action={Astro.url.pathname} method="get" class="flex items-center gap-2">
+        <input type="hidden" name="filter" value={currentFilter} />
+        <input 
+          type="text" 
+          name="q" 
+          value={searchQuery} 
+          placeholder="Search..." 
+          class="px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#00052B]"
+        />
+        <button type="submit" class="px-4 py-2 rounded-full text-sm font-medium bg-[#0D1236] hover:bg-[#202448] transition-colors cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+/**
+ * BlogHero.astro
+ *
+ * Menampilkan section hero untuk halaman Blog, termasuk dekorasi kiri/kanan
+ * dan judul utama. Komponen ini saat ini statis, namun bisa menerima props
+ * untuk membuat judul/dimensi dinamis jika diperlukan di masa depan.
+ *
+ * Props (opsional):
+ * - title?: string — default "BLOG"
+ */
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'BLOG' } = Astro.props as Props;
+---
+<section id="home" class="relative min-h-screen flex overflow-hidden">
+  <div class="absolute top-0 left-0 z-0">
+    <img
+      src="/images/about/elemt-left.png"
+      alt="Left Decoration"
+      class="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-[50rem] xl:h-[50rem] object-cover"
+    />
+  </div>
+
+  <div class="absolute top-0 right-0 z-0">
+    <img
+      src="/images/about/element-right.png"
+      alt="Right Decoration"
+      class="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-[50rem] xl:h-[50rem] object-cover"
+    />
+  </div>
+
+  <div
+    class="absolute left-12 sm:left-24 md:left-36 lg:left-48 xl:left-60 top-1/2 -translate-y-1/2 z-20 text-white text-left"
+  >
+    <h1
+      class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-wider"
+    >
+      {title}
+    </h1>
+  </div>
+</section>

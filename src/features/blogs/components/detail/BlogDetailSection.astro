@@ -1,0 +1,35 @@
+---
+import NotFoundError from '@/components/boundaries/NotFoundError.astro';
+import { isBlogType, readBlogDetailService } from '../../services/read-blog-detail';
+import BlogArticle from './BlogArticle.astro';
+
+/**
+ * BlogDetailSection.astro
+ *
+ * Komponen container untuk menampilkan detail blog.
+ * Bertanggung jawab untuk layout dan struktur konten detail blog.
+ * Menggunakan komponen-komponen modular untuk rendering artikel.
+ *
+ * Props:
+ * - id: string — ID blog yang akan ditampilkan
+ */
+
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+const blog = await readBlogDetailService(id);
+---
+
+<div id="detailContainer" class="space-y-8">
+  
+  {isBlogType(blog) ? (
+    <BlogArticle blog={blog} />
+
+  ) : (
+    <NotFoundError message={blog.error} />
+  )}
+  
+</div>
