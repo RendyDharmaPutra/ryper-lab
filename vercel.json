@@ -1,11 +1,11 @@
 {
-  "version" : 2,
+  "version": 2,
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs22.x"
+      "runtime": "node22.x"
     },
     "api/**/*.ts": {
-      "runtime": "nodejs22.x"
+      "runtime": "node22.x"
     }
   },
   "rewrites": [
