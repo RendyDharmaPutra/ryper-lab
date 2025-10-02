@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": undefined, "SSR": true};
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://web-profile-ryper-astro.vercel.app", "SSR": true};
 const getEnvValue = (key) => {
   const value = Object.assign(__vite_import_meta_env__, { API_URL: "https://ryper-api-express.vercel.app/api", TIME_OUT: "5000", SECRET_KEY: "your_secret_key", _: process.env._, NODE: process.env.NODE, NODE_ENV: process.env.NODE_ENV })[key];
   if (!value) {
@@ -65,4 +65,17 @@ const formatWIB = (dateISO) => {
   return `${formatted} WIB`;
 };
 
-export { api as a, formatWIB as f, handleApiError as h };
+const isBlogArray = (data) => {
+  return Array.isArray(data);
+};
+const readBlogsService = async () => {
+  try {
+    const blogs = (await api.get("/blogs")).data;
+    return blogs;
+  } catch (error) {
+    const errorMessage = handleApiError(error, "data blog");
+    return { error: errorMessage };
+  }
+};
+
+export { api as a, formatWIB as f, handleApiError as h, isBlogArray as i, readBlogsService as r };

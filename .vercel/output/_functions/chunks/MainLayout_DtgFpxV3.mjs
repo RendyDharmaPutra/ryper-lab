@@ -1,10 +1,10 @@
-import { e as createComponent, m as maybeRenderHead, r as renderTemplate, k as renderComponent, f as createAstro, h as addAttribute, n as renderSlot } from './astro/server_nCUQpn0U.mjs';
+import { f as createComponent, m as maybeRenderHead, r as renderTemplate, k as renderComponent, e as createAstro, h as addAttribute, n as renderSlot } from './astro/server_ZyYm6PKT.mjs';
 import 'kleur/colors';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { House, Globe, Users, X, Menu, MapPin, Mail, Share2, Youtube, Linkedin, Instagram, Github } from 'lucide-react';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { $ as $$BaseLayout } from './BaseLayout_C38SFoEU.mjs';
+import { $ as $$BaseLayout } from './BaseLayout_D28ad3ea.mjs';
 /* empty css                         */
 import 'clsx';
 
@@ -107,7 +107,7 @@ labrpl@cs.unej.ac.id
 </a> </section>`;
 }, "/home/luky/Code/Web/Astro/web-profile-ryper/src/components/layouts/footer/main-footer/ContactFooter.astro", void 0);
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://web-profile-ryper-astro.vercel.app");
 const $$SocialItem = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$SocialItem;

@@ -1,17 +1,16 @@
-import { q as decryptString, v as createSlotValueFromString, w as isAstroComponentFactory, k as renderComponent, r as renderTemplate, R as ROUTE_TYPE_HEADER, x as REROUTE_DIRECTIVE_HEADER, A as AstroError, y as i18nNoLocaleFoundInPath, z as ResponseSentError, B as MiddlewareNoDataOrNextCalled, C as MiddlewareNotAResponse, D as originPathnameSymbol, G as RewriteWithBodyUsed, H as GetStaticPathsRequired, J as InvalidGetStaticPathsReturn, K as InvalidGetStaticPathsEntry, O as GetStaticPathsExpectedParams, P as GetStaticPathsInvalidRouteParam, Q as PageNumberParamNotFound, S as DEFAULT_404_COMPONENT, T as ActionNotFoundError, V as NoMatchingStaticPathFound, W as PrerenderDynamicEndpointPathCollide, X as ReservedSlotName, Y as renderSlotToString, Z as renderJSX, _ as chunkToString, $ as isRenderInstruction, a0 as ForbiddenRewrite, a1 as SessionStorageInitError, a2 as SessionStorageSaveError, a3 as ASTRO_VERSION, a4 as CspNotEnabled, a5 as LocalsReassigned, a6 as generateCspDigest, a7 as PrerenderClientAddressNotAvailable, a8 as clientAddressSymbol, a9 as ClientAddressNotAvailable, aa as StaticClientAddressNotAvailable, ab as AstroResponseHeadersReassigned, ac as responseSentSymbol$1, ad as renderPage, ae as REWRITE_DIRECTIVE_HEADER_KEY, af as REWRITE_DIRECTIVE_HEADER_VALUE, ag as renderEndpoint, ah as LocalsNotAnObject, ai as REROUTABLE_STATUS_CODES, aj as nodeRequestAbortControllerCleanupSymbol } from './astro/server_nCUQpn0U.mjs';
+import { q as decryptString, v as createSlotValueFromString, w as isAstroComponentFactory, k as renderComponent, r as renderTemplate, R as ROUTE_TYPE_HEADER, x as REROUTE_DIRECTIVE_HEADER, A as AstroError, y as i18nNoLocaleFoundInPath, z as ResponseSentError, B as MiddlewareNoDataOrNextCalled, C as MiddlewareNotAResponse, D as originPathnameSymbol, G as RewriteWithBodyUsed, H as GetStaticPathsRequired, J as InvalidGetStaticPathsReturn, K as InvalidGetStaticPathsEntry, O as GetStaticPathsExpectedParams, P as GetStaticPathsInvalidRouteParam, Q as PageNumberParamNotFound, S as DEFAULT_404_COMPONENT, T as ActionNotFoundError, V as NoMatchingStaticPathFound, W as PrerenderDynamicEndpointPathCollide, X as ReservedSlotName, Y as renderSlotToString, Z as renderJSX, _ as chunkToString, $ as isRenderInstruction, a0 as ForbiddenRewrite, a1 as SessionStorageInitError, a2 as SessionStorageSaveError, a3 as ASTRO_VERSION, a4 as CspNotEnabled, a5 as LocalsReassigned, a6 as generateCspDigest, a7 as PrerenderClientAddressNotAvailable, a8 as clientAddressSymbol, a9 as ClientAddressNotAvailable, aa as StaticClientAddressNotAvailable, ab as AstroResponseHeadersReassigned, ac as responseSentSymbol$1, ad as renderPage, ae as REWRITE_DIRECTIVE_HEADER_KEY, af as REWRITE_DIRECTIVE_HEADER_VALUE, ag as renderEndpoint, ah as LocalsNotAnObject, ai as REROUTABLE_STATUS_CODES } from './astro/server_ZyYm6PKT.mjs';
 import { bold, red, yellow, dim, blue, green } from 'kleur/colors';
 import 'clsx';
 import { serialize, parse } from 'cookie';
-import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_CQ53pfLm.mjs';
+import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_yCwHKfoy.mjs';
 import 'es-module-lexer';
 import buffer from 'node:buffer';
 import crypto$1 from 'node:crypto';
 import { Http2ServerResponse } from 'node:http2';
-import { b as appendForwardSlash, j as joinPaths, f as fileExtension, s as slash, p as prependForwardSlash, r as removeTrailingForwardSlash, c as trimSlashes, d as isInternalPath, e as collapseDuplicateTrailingSlashes, h as hasFileExtension } from './index_DKHmmOtR.mjs';
+import { a as appendForwardSlash, j as joinPaths, f as fileExtension, s as slash, p as prependForwardSlash, r as removeTrailingForwardSlash, t as trimSlashes, b as isInternalPath, c as collapseDuplicateTrailingSlashes, h as hasFileExtension } from './path_hV-dQId8.mjs';
 import { unflatten as unflatten$1, stringify as stringify$1 } from 'devalue';
 import { createStorage, builtinDrivers } from 'unstorage';
-import '@vercel/routing-utils';
-import 'deterministic-object-hash';
+import 'fast-glob';
 import nodePath from 'node:path';
 
 function shouldAppendForwardSlash(trailingSlash, buildFormat) {
@@ -1548,8 +1547,7 @@ async function callGetStaticPaths({
   staticPaths = await mod.getStaticPaths({
     // Q: Why the cast?
     // A: So users downstream can have nicer typings, we have to make some sacrifice in our internal typings, which necessitate a cast here
-    paginate: generatePaginateFunction(route, base),
-    routePattern: route.route
+    paginate: generatePaginateFunction(route, base)
   });
   validateGetStaticPathsResult(staticPaths, logger, route);
   const keyedStaticPaths = staticPaths;
@@ -1896,6 +1894,7 @@ function sequence(...handlers) {
             carriedPayload = payload;
             handleContext.request = newRequest;
             handleContext.url = new URL(newRequest.url);
+            handleContext.cookies = new AstroCookies(newRequest);
             handleContext.params = getParams(routeData, pathname);
             handleContext.routePattern = routeData.route;
             setOriginPathname(
@@ -2321,7 +2320,7 @@ function resolveSessionDriverName(driver) {
 
 const apiContextRoutesSymbol = Symbol.for("context.routes");
 class RenderContext {
-  constructor(pipeline, locals, middleware, actions, pathname, request, routeData, status, clientAddress, cookies = new AstroCookies(request), params = getParams(routeData, pathname), url = new URL(request.url), props = {}, partial = void 0, shouldInjectCspMetaTags = !!pipeline.manifest.csp, session = pipeline.manifest.sessionConfig ? new AstroSession(cookies, pipeline.manifest.sessionConfig, pipeline.runtimeMode) : void 0) {
+  constructor(pipeline, locals, middleware, actions, pathname, request, routeData, status, clientAddress, cookies = new AstroCookies(request), params = getParams(routeData, pathname), url = new URL(request.url), props = {}, partial = void 0, session = pipeline.manifest.sessionConfig ? new AstroSession(cookies, pipeline.manifest.sessionConfig, pipeline.runtimeMode) : void 0) {
     this.pipeline = pipeline;
     this.locals = locals;
     this.middleware = middleware;
@@ -2336,7 +2335,6 @@ class RenderContext {
     this.url = url;
     this.props = props;
     this.partial = partial;
-    this.shouldInjectCspMetaTags = shouldInjectCspMetaTags;
     this.session = session;
   }
   /**
@@ -2359,8 +2357,7 @@ class RenderContext {
     status = 200,
     props,
     partial = void 0,
-    actions,
-    shouldInjectCspMetaTags
+    actions
   }) {
     const pipelineMiddleware = await pipeline.getMiddleware();
     const pipelineActions = actions ?? await pipeline.getActions();
@@ -2384,8 +2381,7 @@ class RenderContext {
       void 0,
       void 0,
       props,
-      partial,
-      shouldInjectCspMetaTags ?? !!pipeline.manifest.csp
+      partial
     );
   }
   /**
@@ -2400,7 +2396,7 @@ class RenderContext {
    * - fallback
    */
   async render(componentInstance, slots = {}) {
-    const { middleware, pipeline } = this;
+    const { cookies, middleware, pipeline } = this;
     const { logger, serverLike, streaming, manifest } = pipeline;
     const props = Object.keys(this.props).length > 0 ? this.props : await getProps({
       mod: componentInstance,
@@ -2514,7 +2510,7 @@ class RenderContext {
       }
       const responseCookies = getCookiesFromResponse(response2);
       if (responseCookies) {
-        this.cookies.merge(responseCookies);
+        cookies.merge(responseCookies);
       }
       return response2;
     };
@@ -2525,7 +2521,7 @@ class RenderContext {
     if (response.headers.get(ROUTE_TYPE_HEADER)) {
       response.headers.delete(ROUTE_TYPE_HEADER);
     }
-    attachCookiesToResponse(response, this.cookies);
+    attachCookiesToResponse(response, cookies);
     return response;
   }
   createAPIContext(props, context) {
@@ -2567,11 +2563,7 @@ class RenderContext {
       );
     }
     this.url = new URL(this.request.url);
-    const newCookies = new AstroCookies(this.request);
-    if (this.cookies) {
-      newCookies.merge(this.cookies);
-    }
-    this.cookies = newCookies;
+    this.cookies = new AstroCookies(this.request);
     this.params = getParams(routeData, pathname);
     this.pathname = pathname;
     this.isRewriting = true;
@@ -2586,16 +2578,13 @@ class RenderContext {
   }
   createActionAPIContext() {
     const renderContext = this;
-    const { params, pipeline, url } = this;
+    const { cookies, params, pipeline, url } = this;
     const generator = `Astro v${ASTRO_VERSION}`;
     const rewrite = async (reroutePayload) => {
       return await this.#executeRewrite(reroutePayload);
     };
     return {
-      // Don't allow reassignment of cookies because it doesn't work
-      get cookies() {
-        return renderContext.cookies;
-      },
+      cookies,
       routePattern: this.routeData.route,
       isPrerendered: this.routeData.prerender,
       get clientAddress() {
@@ -2642,39 +2631,35 @@ class RenderContext {
         }
         return renderContext.session;
       },
-      get csp() {
-        return {
-          insertDirective(payload) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.directives.push(payload);
-          },
-          insertScriptResource(resource) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.scriptResources.push(resource);
-          },
-          insertStyleResource(resource) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.styleResources.push(resource);
-          },
-          insertStyleHash(hash) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.styleHashes.push(hash);
-          },
-          insertScriptHash(hash) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.scriptHashes.push(hash);
-          }
-        };
+      insertDirective(payload) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.directives.push(payload);
+      },
+      insertScriptResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptResources.push(resource);
+      },
+      insertStyleResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleResources.push(resource);
+      },
+      insertStyleHash(hash) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleHashes.push(hash);
+      },
+      insertScriptHash(hash) {
+        if (!!pipeline.manifest.csp === false) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptHashes.push(hash);
       }
     };
   }
@@ -2684,7 +2669,7 @@ class RenderContext {
     const { links, scripts, styles } = await pipeline.headElements(routeData);
     const extraStyleHashes = [];
     const extraScriptHashes = [];
-    const shouldInjectCspMetaTags = this.shouldInjectCspMetaTags;
+    const shouldInjectCspMetaTags = !!manifest.csp;
     const cspAlgorithm = manifest.csp?.algorithm ?? "SHA-256";
     if (shouldInjectCspMetaTags) {
       for (const style of styles) {
@@ -2870,39 +2855,35 @@ class RenderContext {
       get originPathname() {
         return getOriginPathname(renderContext.request);
       },
-      get csp() {
-        return {
-          insertDirective(payload) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.directives.push(payload);
-          },
-          insertScriptResource(resource) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.scriptResources.push(resource);
-          },
-          insertStyleResource(resource) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.styleResources.push(resource);
-          },
-          insertStyleHash(hash) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.styleHashes.push(hash);
-          },
-          insertScriptHash(hash) {
-            if (!pipeline.manifest.csp) {
-              throw new AstroError(CspNotEnabled);
-            }
-            renderContext.result?.scriptHashes.push(hash);
-          }
-        };
+      insertDirective(payload) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.directives.push(payload);
+      },
+      insertScriptResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptResources.push(resource);
+      },
+      insertStyleResource(resource) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleResources.push(resource);
+      },
+      insertStyleHash(hash) {
+        if (!pipeline.manifest.csp) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.styleHashes.push(hash);
+      },
+      insertScriptHash(hash) {
+        if (!!pipeline.manifest.csp === false) {
+          throw new AstroError(CspNotEnabled);
+        }
+        renderContext.result?.scriptHashes.push(hash);
       }
     };
   }
@@ -3597,7 +3578,6 @@ class NodeApp extends App {
    * ```
    */
   static createRequest(req, { skipBody = false } = {}) {
-    const controller = new AbortController();
     const isEncrypted = "encrypted" in req.socket && req.socket.encrypted;
     const getFirstForwardedValue = (multiValueHeader) => {
       return multiValueHeader?.toString()?.split(",").map((e) => e.trim())?.[0];
@@ -3619,48 +3599,13 @@ class NodeApp extends App {
     }
     const options = {
       method: req.method || "GET",
-      headers: makeRequestHeaders(req),
-      signal: controller.signal
+      headers: makeRequestHeaders(req)
     };
     const bodyAllowed = options.method !== "HEAD" && options.method !== "GET" && skipBody === false;
     if (bodyAllowed) {
       Object.assign(options, makeRequestBody(req));
     }
     const request = new Request(url, options);
-    const socket = getRequestSocket(req);
-    if (socket && typeof socket.on === "function") {
-      const existingCleanup = getAbortControllerCleanup(req);
-      if (existingCleanup) {
-        existingCleanup();
-      }
-      let cleanedUp = false;
-      const removeSocketListener = () => {
-        if (typeof socket.off === "function") {
-          socket.off("close", onSocketClose);
-        } else if (typeof socket.removeListener === "function") {
-          socket.removeListener("close", onSocketClose);
-        }
-      };
-      const cleanup = () => {
-        if (cleanedUp) return;
-        cleanedUp = true;
-        removeSocketListener();
-        controller.signal.removeEventListener("abort", cleanup);
-        Reflect.deleteProperty(req, nodeRequestAbortControllerCleanupSymbol);
-      };
-      const onSocketClose = () => {
-        cleanup();
-        if (!controller.signal.aborted) {
-          controller.abort();
-        }
-      };
-      socket.on("close", onSocketClose);
-      controller.signal.addEventListener("abort", cleanup, { once: true });
-      Reflect.set(req, nodeRequestAbortControllerCleanupSymbol, cleanup);
-      if (socket.destroyed) {
-        onSocketClose();
-      }
-    }
     const forwardedClientIp = getFirstForwardedValue(req.headers["x-forwarded-for"]);
     const clientIp = forwardedClientIp || req.socket?.remoteAddress;
     if (clientIp) {
@@ -3689,23 +3634,6 @@ class NodeApp extends App {
       destination.statusMessage = statusText;
     }
     destination.writeHead(status, createOutgoingHttpHeaders(headers));
-    const cleanupAbortFromDestination = getAbortControllerCleanup(
-      destination.req ?? void 0
-    );
-    if (cleanupAbortFromDestination) {
-      const runCleanup = () => {
-        cleanupAbortFromDestination();
-        if (typeof destination.off === "function") {
-          destination.off("finish", runCleanup);
-          destination.off("close", runCleanup);
-        } else {
-          destination.removeListener?.("finish", runCleanup);
-          destination.removeListener?.("close", runCleanup);
-        }
-      };
-      destination.on("finish", runCleanup);
-      destination.on("close", runCleanup);
-    }
     if (!body) return destination.end();
     try {
       const reader = body.getReader();
@@ -3777,71 +3705,60 @@ function asyncIterableToBodyProps(iterable) {
     duplex: "half"
   };
 }
-function getAbortControllerCleanup(req) {
-  if (!req) return void 0;
-  const cleanup = Reflect.get(req, nodeRequestAbortControllerCleanupSymbol);
-  return typeof cleanup === "function" ? cleanup : void 0;
-}
-function getRequestSocket(req) {
-  if (req.socket && typeof req.socket.on === "function") {
-    return req.socket;
-  }
-  const http2Socket = req.stream?.session?.socket;
-  if (http2Socket && typeof http2Socket.on === "function") {
-    return http2Socket;
-  }
-  return void 0;
-}
 
 apply();
 
 nodePath.posix.join;
 
-const ASTRO_PATH_HEADER = "x-astro-path";
-const ASTRO_PATH_PARAM = "x_astro_path";
-const ASTRO_LOCALS_HEADER = "x-astro-locals";
-const ASTRO_MIDDLEWARE_SECRET_HEADER = "x-astro-middleware-secret";
+/**
+ * The edge function calls the node server at /_render,
+ * with the original path as the value of this header.
+ */
+const ASTRO_PATH_HEADER = 'x-astro-path';
+const ASTRO_PATH_PARAM = 'x_astro_path';
+/**
+ * The edge function calls the node server at /_render,
+ * with the locals serialized into this header.
+ */
+const ASTRO_LOCALS_HEADER = 'x-astro-locals';
+const ASTRO_MIDDLEWARE_SECRET_HEADER = 'x-astro-middleware-secret';
 
-const createExports = (manifest, {
-  middlewareSecret,
-  skewProtection
-}) => {
-  const app = new NodeApp(manifest);
-  const handler = async (req, res) => {
-    const url = new URL(`https://example.com${req.url}`);
-    const clientAddress = req.headers["x-forwarded-for"];
-    const localsHeader = req.headers[ASTRO_LOCALS_HEADER];
-    const middlewareSecretHeader = req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
-    const realPath = req.headers[ASTRO_PATH_HEADER] ?? url.searchParams.get(ASTRO_PATH_PARAM);
-    if (typeof realPath === "string") {
-      req.url = realPath;
-    }
-    let locals = {};
-    if (localsHeader) {
-      if (middlewareSecretHeader !== middlewareSecret) {
-        res.statusCode = 403;
-        res.end("Forbidden");
-        return;
-      }
-      locals = typeof localsHeader === "string" ? JSON.parse(localsHeader) : JSON.parse(localsHeader[0]);
-    }
-    delete req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
-    if (skewProtection && process.env.VERCEL_SKEW_PROTECTION_ENABLED === "1") {
-      req.headers["x-deployment-id"] = process.env.VERCEL_DEPLOYMENT_ID;
-    }
-    const webResponse = await app.render(req, {
-      addCookieHeader: true,
-      clientAddress,
-      locals
-    });
-    await NodeApp.writeResponse(webResponse, res);
-  };
-  return {
-    default: handler
-  };
+// Keep at the top
+const createExports = (manifest, { middlewareSecret, skewProtection }) => {
+    const app = new NodeApp(manifest);
+    const handler = async (req, res) => {
+        const url = new URL(`https://example.com${req.url}`);
+        const clientAddress = req.headers['x-forwarded-for'];
+        const localsHeader = req.headers[ASTRO_LOCALS_HEADER];
+        const middlewareSecretHeader = req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
+        const realPath = req.headers[ASTRO_PATH_HEADER] ?? url.searchParams.get(ASTRO_PATH_PARAM);
+        if (typeof realPath === 'string') {
+            req.url = realPath;
+        }
+        let locals = {};
+        if (localsHeader) {
+            if (middlewareSecretHeader !== middlewareSecret) {
+                res.statusCode = 403;
+                res.end('Forbidden');
+                return;
+            }
+            locals =
+                typeof localsHeader === 'string' ? JSON.parse(localsHeader) : JSON.parse(localsHeader[0]);
+        }
+        // hide the secret from the rest of user code
+        delete req.headers[ASTRO_MIDDLEWARE_SECRET_HEADER];
+        // https://vercel.com/docs/deployments/skew-protection#supported-frameworks
+        if (skewProtection && process.env.VERCEL_SKEW_PROTECTION_ENABLED === '1') {
+            req.headers['x-deployment-id'] = process.env.VERCEL_DEPLOYMENT_ID;
+        }
+        const webResponse = await app.render(req, { addCookieHeader: true, clientAddress, locals });
+        await NodeApp.writeResponse(webResponse, res);
+    };
+    return { default: handler };
 };
-function start() {
-}
+// HACK: prevent warning
+// @astrojs-ssr-virtual-entry (22:23) "start" is not exported by "dist/serverless/entrypoint.js", imported by "@astrojs-ssr-virtual-entry".
+function start() { }
 
 const serverEntrypointModule = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,

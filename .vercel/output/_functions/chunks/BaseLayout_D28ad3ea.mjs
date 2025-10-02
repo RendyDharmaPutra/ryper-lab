@@ -1,4 +1,4 @@
-import { e as createComponent, f as createAstro, r as renderTemplate, n as renderSlot, o as renderHead, h as addAttribute } from './astro/server_nCUQpn0U.mjs';
+import { e as createAstro, f as createComponent, r as renderTemplate, n as renderSlot, o as renderHead, h as addAttribute } from './astro/server_ZyYm6PKT.mjs';
 import 'kleur/colors';
 import 'clsx';
 /* empty css                         */
@@ -7,7 +7,7 @@ var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
 var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
 var _a;
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://web-profile-ryper-astro.vercel.app");
 const $$BaseLayout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$BaseLayout;

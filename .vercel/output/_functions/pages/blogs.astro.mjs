@@ -1,24 +1,11 @@
-import { e as createComponent, f as createAstro, m as maybeRenderHead, r as renderTemplate, h as addAttribute, k as renderComponent } from '../chunks/astro/server_nCUQpn0U.mjs';
+import { e as createAstro, f as createComponent, m as maybeRenderHead, r as renderTemplate, h as addAttribute, k as renderComponent } from '../chunks/astro/server_ZyYm6PKT.mjs';
 import 'kleur/colors';
-import { $ as $$MainLayout } from '../chunks/MainLayout_CFNHdo4e.mjs';
+import { $ as $$MainLayout } from '../chunks/MainLayout_DtgFpxV3.mjs';
 /* empty css                                 */
-import { a as api, h as handleApiError, f as formatWIB } from '../chunks/time_formatter_C_paRFDo.mjs';
+import { f as formatWIB, r as readBlogsService, i as isBlogArray } from '../chunks/read-blogs_DUtWR3ml.mjs';
 import 'clsx';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 export { renderers } from '../renderers.mjs';
-
-const isBlogArray = (data) => {
-  return Array.isArray(data);
-};
-const readBlogsService = async () => {
-  try {
-    const blogs = (await api.get("/blogs")).data;
-    return blogs;
-  } catch (error) {
-    const errorMessage = handleApiError(error, "data blog");
-    return { error: errorMessage };
-  }
-};
 
 function getBlogsListingParams(url) {
   const category = (url.searchParams.get("filter") ?? "all").toLowerCase();
@@ -27,7 +14,7 @@ function getBlogsListingParams(url) {
   return { category, searchQuery, currentPage };
 }
 
-const $$Astro$3 = createAstro();
+const $$Astro$3 = createAstro("https://web-profile-ryper-astro.vercel.app");
 const $$BlogHero = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$BlogHero;
@@ -43,7 +30,7 @@ function mergeSearchParams(base, params) {
   return `?${searchParams.toString()}`;
 }
 
-const $$Astro$2 = createAstro();
+const $$Astro$2 = createAstro("https://web-profile-ryper-astro.vercel.app");
 const $$BlogFilters = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$BlogFilters;
@@ -214,7 +201,7 @@ const BlogContent = ({
   ] });
 };
 
-const $$Astro$1 = createAstro();
+const $$Astro$1 = createAstro("https://web-profile-ryper-astro.vercel.app");
 const $$ErrorBoundary = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$ErrorBoundary;
@@ -228,7 +215,7 @@ Coba Lagi
 </button> </div> </div> </div>`;
 }, "/home/luky/Code/Web/Astro/web-profile-ryper/src/components/boundaries/ErrorBoundary.astro", void 0);
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://web-profile-ryper-astro.vercel.app");
 const prerender = false;
 const $$Blogs = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
