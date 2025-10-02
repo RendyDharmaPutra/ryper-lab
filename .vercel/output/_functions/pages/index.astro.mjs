@@ -1,6 +1,6 @@
-import { e as createComponent, m as maybeRenderHead, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_DyivjFfl.mjs';
+import { e as createComponent, m as maybeRenderHead, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_nCUQpn0U.mjs';
 import 'kleur/colors';
-import { $ as $$MainLayout } from '../chunks/MainLayout_B2kaYLGz.mjs';
+import { $ as $$MainLayout } from '../chunks/MainLayout_CFNHdo4e.mjs';
 import 'clsx';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { ChevronUp, ChevronDown } from 'lucide-react';

@@ -1,10 +1,10 @@
-import { e as createComponent, m as maybeRenderHead, r as renderTemplate, k as renderComponent, f as createAstro, h as addAttribute, n as renderSlot } from './astro/server_DyivjFfl.mjs';
+import { e as createComponent, m as maybeRenderHead, r as renderTemplate, k as renderComponent, f as createAstro, h as addAttribute, n as renderSlot } from './astro/server_nCUQpn0U.mjs';
 import 'kleur/colors';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { House, Globe, Users, X, Menu, MapPin, Mail, Share2, Youtube, Linkedin, Instagram, Github } from 'lucide-react';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { $ as $$BaseLayout } from './BaseLayout_GnCKA69t.mjs';
+import { $ as $$BaseLayout } from './BaseLayout_C38SFoEU.mjs';
 /* empty css                         */
 import 'clsx';
 

@@ -1,7 +1,7 @@
-import { e as createComponent, f as createAstro, m as maybeRenderHead, r as renderTemplate, h as addAttribute, k as renderComponent, l as Fragment, u as unescapeHTML } from '../../chunks/astro/server_DyivjFfl.mjs';
+import { e as createComponent, f as createAstro, m as maybeRenderHead, r as renderTemplate, h as addAttribute, k as renderComponent, l as Fragment, u as unescapeHTML } from '../../chunks/astro/server_nCUQpn0U.mjs';
 import 'kleur/colors';
 /* empty css                                   */
-import { $ as $$BaseLayout } from '../../chunks/BaseLayout_GnCKA69t.mjs';
+import { $ as $$BaseLayout } from '../../chunks/BaseLayout_C38SFoEU.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { ArrowLeft } from 'lucide-react';
 import 'clsx';
