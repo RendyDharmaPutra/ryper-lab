@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         bph: [],
         asisten_praktikum: [],
         asisten_penelitian: [],
+        media_kreatif: []
       };
 
       json.data.forEach((item) => {
@@ -209,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // === Render Pengurus (BPH, Asisten Praktikum, Asisten Penelitian) ===
+  // === Render Pengurus (BPH, Asisten Praktikum, Asisten Penelitian, Media Kreatif) ===
   async function renderPengurus() {
     const pengurusData = await fetchDataDummy("pengurus");
 
@@ -217,10 +219,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const bphData = pengurusData.bph || [];
       const asprakData = pengurusData.asisten_praktikum || [];
       const aspenData = pengurusData.asisten_penelitian || [];
+      const medkreData = pengurusData.media_kreatif || [];
 
       setupCarousel("bph-carousel", bphData, createPersonCard);
       setupCarousel("asprak-carousel", asprakData, createPersonCard);
       setupCarousel("aspen-carousel", aspenData, createPersonCard);
+      setupCarousel("medkre-carousel", medkreData, createPersonCard);
     } else {
       document
         .getElementById("bph-carousel")
@@ -232,6 +236,10 @@ document.addEventListener("DOMContentLoaded", function () {
         '<p class="text-red-500 text-center col-span-full">Gagal memuat data Asisten Praktikum.</p>';
       document
         .getElementById("aspen-carousel")
+        .querySelector(".carousel-track").innerHTML =
+        '<p class="text-red-500 text-center col-span-full">Gagal memuat data Asisten Penelitian.</p>';
+      document
+        .getElementById("medkre-carousel")
         .querySelector(".carousel-track").innerHTML =
         '<p class="text-red-500 text-center col-span-full">Gagal memuat data Asisten Penelitian.</p>';
     }
@@ -379,8 +387,12 @@ function setupCarousel(carouselId, data, cardCreator) {
   let currentIndex = 0;
   let isTransitioning = false;
   let autoScrollInterval;
-
-  const extendedData = [...data, ...data, ...data];
+  let extendedData;
+  if (data.length === 2) {
+    extendedData = Array(6).fill(null).flatMap(() => data);
+  } else {
+    extendedData = [...data, ...data, ...data]; 
+  }
   track.innerHTML = extendedData.map(cardCreator).join("");
 
   const visibleCount = getVisibleCount();
