@@ -8,6 +8,10 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "engines": {
+  "node": "20.x"
+},
+  "license": "MIT",
   "dependencies": {
     "@astrojs/react": "^4.3.1",
     "@astrojs/sitemap": "^3.5.1",
